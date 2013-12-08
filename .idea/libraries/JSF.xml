@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="JSF" type="jsf">
+    <CLASSES>
+      <root url="jar://E:/Java/Biblioteki/javax.faces-2.2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
