@@ -31,4 +31,27 @@ public class OrderBean implements Serializable{
     public void setLista(List<String> lista) {
         this.lista = lista;
     }
+	
+	public static void main(String[] args) throws IOException {
+        String docPieceNameDec = "com.networkedassets.autodoc.transformer.JavaDocGenerator";
+
+        File file = new File("C:\\Users\\Maciek\\IdeaProjects\\JavaTests\\src\\main\\resources\\hugefuckingjson.json");
+        ObjectMapper mapper = new ObjectMapper();
+
+        JsonNode rootNode = mapper.readTree(file);
+        JsonNode entitiesNode = rootNode.get("entities");
+        JsonNode relationsNode = rootNode.get("relations");
+
+        List<Relation> relationList = mapper.readValue(relationsNode.toString(), new TypeReference<List<Relation>>(){});
+        relationList.forEach(System.out::println);
+
+        Iterator<String> stringIterator = entitiesNode.fieldNames();
+        String substringDocPieceNameDec = docPieceNameDec.substring(0, docPieceNameDec.lastIndexOf("."));
+        while (stringIterator.hasNext()) {
+            String packageName = stringIterator.next();
+            if(packageName.startsWith(substringDocPieceNameDec) && packageName.length() == substringDocPieceNameDec.length()){
+                System.out.println(packageName);
+            }
+        }
+    }
 }
